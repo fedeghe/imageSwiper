@@ -48,7 +48,6 @@
         });
 
         self.els.forEach(function (el) {
-            // get size
             el.mainImg = appendImageCb(el, el.node, function () {
                 el.node.classList.add('hid');
                 el.node.style.height = (el.mainImg.height + (self.opts.rangeSwipe ? 30 : 0)) + 'px';
@@ -57,9 +56,7 @@
                     width: el.mainImg.width,
                     height: el.mainImg.height
                 }
-                // var x = el.mainImg.width;
-                var x = 0;
-                el.mainImg.style.clip = 'rect(0, ' + x + 'px, ' + el.mainImg.height + 'px, 0)';
+                el.mainImg.style.clip = 'rect(0, 0px, ' + el.mainImg.height + 'px, 0)';
                 console.log('loaded', el.image0, ', size is', el.mainImg.width, 'x', el.mainImg.height)
                 howMany--;
                 howMany == 0 && self.init();
