@@ -12,3 +12,4 @@ this will act on all elements like the following:
 ``` html
 <div data-diff="media/delta1.png;media/delta2.png"></div>
 ```
+here ‘media/delta1.png’ will be shown and swiping using the choosen mode You will see the ‘media/delta2.png’ appearing from the right.
