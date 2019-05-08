@@ -34,8 +34,8 @@
             containers = WD.querySelectorAll('[data-imageswipe]'),
             howMany = containers.length;
         containers.forEach(function (container) {
-            var images = container.dataset.diff.split(';')
-            container.removeAttribute('data-diff')
+            var images = container.dataset.imageswipe.split(';')
+            container.removeAttribute('data-imageswipe')
             self.els.push({
                 range: {value: 0},
                 separator: null,
