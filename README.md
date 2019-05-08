@@ -4,7 +4,7 @@ This is a simple utility to quickly enable a 'swipe diff image' like on github.
 All is needed is to load the library and then run
 ``` js
 ImageSwiper({
-    rangeSwipe:false, // add a range imput
+    rangeSwipe: false, // add a range imput
     imageSwipe: true  // enable a dragging swiper on the image
 });
 ```
