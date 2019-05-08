@@ -31,7 +31,7 @@
 
     ImageSwiper.prototype.getItems = function () {
         var self = this,
-            containers = WD.querySelectorAll('[data-diff]'),
+            containers = WD.querySelectorAll('[data-imageswap]'),
             howMany = containers.length;
         containers.forEach(function (container) {
             var images = container.dataset.diff.split(';')
