@@ -5,7 +5,7 @@ All is needed is to load the library and then run
 ``` js
 ImageSwiper({
     rangeSwipe: false, // add a range imput
-    imageSwipe: true  // enable a dragging swiper on the image
+    imageSwipe: true   // enable a dragging swiper on the image
 });
 ```
 this will act on all elements like the following:  
