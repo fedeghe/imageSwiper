@@ -4,8 +4,14 @@
     function appendImageCb(el, trg, cb) {
         var imgcnt = document.createElement('div'),
             img0 = new Image(),
-            img1 = new Image();
-        img0.onload = cb;
+            img1 = new Image(),
+            stillLoading = 2;
+        function ready() {
+            stillLoading--;
+            !stillLoading && cb();
+        }
+        img0.onload = ready;
+        img1.onload = ready;
         img0.src = el.image0src;
         img1.src = el.image1src;
         img0.classList.add('zZero');
@@ -33,21 +39,19 @@
         var self = this,
             containers = WD.querySelectorAll('[data-imageswipe]'),
             howMany = containers.length;
-        containers.forEach(function (container) {
-            var images = container.dataset.imageswipe.split(';')
-            container.removeAttribute('data-imageswipe')
-            self.els.push({
-                range: {value: 0},
-                separator: null,
-                mainImg: null,
-                container: null,
-                node: container,
-                image0src: images[0],
-                image1src: images[1]
-            });
-        });
 
-        self.els.forEach(function (el) {
+
+        containers.forEach(function (container) {
+            var images = container.dataset.imageswipe.split(';'),
+                el = {
+                    range: {value: 0},
+                    separator: null,
+                    container: null,
+                    node: container,
+                    image0src: images[0],
+                    image1src: images[1]
+                };
+
             el.mainImg = appendImageCb(el, el.node, function () {
                 el.node.classList.add('hid');
                 el.node.style.height = (el.mainImg.height + (self.opts.rangeSwipe ? 30 : 0)) + 'px';
@@ -57,13 +61,13 @@
                     height: el.mainImg.height
                 }
                 el.mainImg.style.clip = 'rect(0, 0px, ' + el.mainImg.height + 'px, 0)';
-                console.log('loaded', el.image0, ', size is', el.mainImg.width, 'x', el.mainImg.height)
+                console.log('loaded', el.image0, ', size is', el.mainImg.width, 'x', el.mainImg.height) 
                 howMany--;
-                howMany == 0 && self.init();
+                if (howMany === 0) self.init();
             });
-            // imgcnt
             el.container = el.mainImg.parentNode;
-
+            container.removeAttribute('data-imageswipe')
+            self.els.push(el);
         });
     };
 
@@ -75,18 +79,31 @@
             el.separator = document.createElement('div');
             el.separator.className = 'separator';
             el.separator.style.height = el.size.height + 'px';
+            el.separator.style.top = '0px';
 
             function updateClip(value) {
+                el.separator.style.opacity = 1;
                 el.mainImg.style.clip = 'rect(0, ' + value + 'px, ' + el.size.height + 'px, 0)';
                 el.separator.style.left = value + 'px';
                 el.range.value = value;
+                if (value < 2 || value > el.size.width -2) {
+                    el.separator.style.opacity = 0
+                }
+
             }
             function offsetUpdate(e, sliding) {
                 var oX = Math.abs(e.offsetX)
-                sliding && oX && updateClip(oX)
+                sliding && updateClip(oX)
             }
-            function enableSliding() {el.sliding = true;}
-            function disableSliding() {el.sliding = false;}
+            function enableSliding() {
+                el.container.style.cursor = 'ew-resize';
+                el.sliding = true;
+            }
+
+            function disableSliding() {
+                el.container.style.cursor = 'default';
+                el.sliding = false;
+            }
 
             if (self.opts.rangeSwipe) {
                 el.range = document.createElement('input');
@@ -113,7 +130,7 @@
                 el.container.addEventListener('mousemove', function (e) {
                     offsetUpdate(e, el.sliding)
                 });
-                el.container.addEventListener('click', function (e) {
+                el.container.addEventListener('mousedown', function (e) {
                     offsetUpdate(e, true)
                 });
             }
