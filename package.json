@@ -1,0 +1,17 @@
+{
+  "name": "imageswipe",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "repository": "https://github.com/fedeghe/imageSwiper.git",
+  "author": "fedeghe <fedeghe@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "malta build.json"
+  },
+  "devDependencies": {
+    "malta": "^4.1.28",
+    "malta-header-comment": "^1.0.12",
+    "malta-js-uglify": "^1.0.13",
+    "malta-rename": "^1.0.6"
+  }
+}

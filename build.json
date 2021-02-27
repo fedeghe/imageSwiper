@@ -1,0 +1,7 @@
+{
+    "EXE": [
+        "rm -rf dist",
+        "mkdir dist"
+    ],
+    "source/imageSwiper.js": "dist -plugins=malta-js-uglify...malta-rename[to:\"index.js\"]...malta-header-comment[name:\"source/header.txt\"]"
+}
