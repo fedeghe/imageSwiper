@@ -2,32 +2,3 @@ body {
     font-family: verdana;
     background-color: green;
 }
-/* div.cnt {position: relative;} */
-
-/* img.zZero{z-index: 0}
-img.zOne{z-index: 1} */
-
-/* div.cnt img {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-} */
-/* input[type=range] {
-    position: absolute;
-    padding: 0px;
-    margin: 0px;
-    margin-top:5px;
-} */
-/* div.cnt.hid img{
-    visibility: hidden;
-} */
-/* div.cnt.vis img{
-    visibility: visible;
-    border: 1px solid black;
-} */
-div.separator{
-    pointer-events: none;
-    position: absolute;
-    width: 0px;
-    border: 0.5px dashed rgba(0, 0, 0, .2);
-}

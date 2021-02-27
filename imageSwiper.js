@@ -23,12 +23,9 @@
         img1.style.left = 0;
         img1.style.position = 'absolute';
         img1.style.zIndex = 1;
-        // img0.classList.add('zZero');
-        // img1.classList.add('zOne');
         img0.setAttribute('draggable', 'false');
         img1.setAttribute('draggable', 'false');
         
-        trg.classList.add('cnt');
         trg.style.position = 'relative';
         trg.appendChild(imgcnt);
         imgcnt.appendChild(img0);
@@ -63,7 +60,6 @@
                 };
 
             el.mainImg = appendImageCb(el, el.node, function () {
-                // el.node.classList.add('hid');
                 el.node.style.visibility = 'hidden';
 
                 el.node.style.height = (el.mainImg.height + (self.opts.rangeSwipe ? 30 : 0)) + 'px';
@@ -86,11 +82,15 @@
     ImageSwiper.prototype.init = function () {
         var self = this;
         this.els.forEach(function (el) {
-            // el.node.classList.remove('hid');
             el.node.style.visibility = 'visible';
-            el.node.classList.add('vis');
             el.separator = document.createElement('div');
-            el.separator.className = 'separator';
+            el.separator.style.pointerEvents = 'none';
+            el.separator.style.position = 'absolute';
+            el.separator.style.width = 0;
+            el.separator.style.border = '0.5px dashed rgba(0, 0, 0, .2)';
+
+
+
             el.separator.style.height = el.size.height + 'px';
             el.separator.style.top = '0px';
 
