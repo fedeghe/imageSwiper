@@ -14,12 +14,22 @@
         img1.onload = ready;
         img0.src = el.image0src;
         img1.src = el.image1src;
-        img0.classList.add('zZero');
-        img1.classList.add('zOne');
+        img0.style.position = 'absolute';
+        img0.style.top = 0;
+        img0.style.left = 0;
+        img0.style.zIndex = 0;
+        img1.style.position = 'absolute';
+        img1.style.top = 0;
+        img1.style.left = 0;
+        img1.style.position = 'absolute';
+        img1.style.zIndex = 1;
+        // img0.classList.add('zZero');
+        // img1.classList.add('zOne');
         img0.setAttribute('draggable', 'false');
         img1.setAttribute('draggable', 'false');
         
         trg.classList.add('cnt');
+        trg.style.position = 'relative';
         trg.appendChild(imgcnt);
         imgcnt.appendChild(img0);
         imgcnt.appendChild(img1);
@@ -53,7 +63,9 @@
                 };
 
             el.mainImg = appendImageCb(el, el.node, function () {
-                el.node.classList.add('hid');
+                // el.node.classList.add('hid');
+                el.node.style.visibility = 'hidden';
+
                 el.node.style.height = (el.mainImg.height + (self.opts.rangeSwipe ? 30 : 0)) + 'px';
 
                 el.size = {
@@ -74,7 +86,8 @@
     ImageSwiper.prototype.init = function () {
         var self = this;
         this.els.forEach(function (el) {
-            el.node.classList.remove('hid');
+            // el.node.classList.remove('hid');
+            el.node.style.visibility = 'visible';
             el.node.classList.add('vis');
             el.separator = document.createElement('div');
             el.separator.className = 'separator';
@@ -108,6 +121,9 @@
             if (self.opts.rangeSwipe) {
                 el.range = document.createElement('input');
                 el.range.type = 'range';
+                el.range.style.padding = 0;
+                el.range.style.margin = 0;
+                el.range.style.marginTop = '5px';
                 el.range.style.position = 'absolute';
                 el.range.style.width = el.size.width + 'px';
                 el.range.step = 1;
@@ -134,7 +150,6 @@
                     offsetUpdate(e, true)
                 });
             }
-
             el.node.appendChild(el.separator)
             
         });
