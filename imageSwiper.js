@@ -10,26 +10,21 @@
             stillLoading--;
             !stillLoading && cb();
         }
-        img0.onload = ready;
-        img1.onload = ready;
-        img0.src = el.image0src;
-        img1.src = el.image1src;
-        img0.style.position = 'absolute';
-        img0.style.top = 0;
-        img0.style.left = 0;
-        img0.style.zIndex = 0;
-        img1.style.position = 'absolute';
-        img1.style.top = 0;
-        img1.style.left = 0;
-        img1.style.position = 'absolute';
-        img1.style.zIndex = 1;
-        img0.setAttribute('draggable', 'false');
-        img1.setAttribute('draggable', 'false');
-        
+        function setImg(img, src, zIndex) {
+            img.onload = ready;
+            img.src = src;
+            img.style.position = 'absolute';
+            img.style.top = 0;
+            img.style.left = 0;
+            img.style.zIndex = zIndex;
+            img.setAttribute('draggable', 'false');
+            imgcnt.appendChild(img);
+        }
+        setImg(img0, el.image0src, 0);
+        setImg(img1, el.image1src, 0);
+
         trg.style.position = 'relative';
         trg.appendChild(imgcnt);
-        imgcnt.appendChild(img0);
-        imgcnt.appendChild(img1);
         return img1;
     }
 
@@ -47,7 +42,6 @@
             containers = WD.querySelectorAll('[data-imageswipe]'),
             howMany = containers.length;
 
-
         containers.forEach(function (container) {
             var images = container.dataset.imageswipe.split(';'),
                 el = {
@@ -61,15 +55,12 @@
 
             el.mainImg = appendImageCb(el, el.node, function () {
                 el.node.style.visibility = 'hidden';
-
                 el.node.style.height = (el.mainImg.height + (self.opts.rangeSwipe ? 30 : 0)) + 'px';
-
                 el.size = {
                     width: el.mainImg.width,
                     height: el.mainImg.height
                 }
                 el.mainImg.style.clip = 'rect(0, 0px, ' + el.mainImg.height + 'px, 0)';
-                console.log('loaded', el.image0, ', size is', el.mainImg.width, 'x', el.mainImg.height) 
                 howMany--;
                 if (howMany === 0) self.init();
             });
@@ -88,8 +79,6 @@
             el.separator.style.position = 'absolute';
             el.separator.style.width = 0;
             el.separator.style.border = '0.5px dashed rgba(0, 0, 0, .2)';
-
-
 
             el.separator.style.height = el.size.height + 'px';
             el.separator.style.top = '0px';
