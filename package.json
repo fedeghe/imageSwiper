@@ -9,7 +9,7 @@
     "build": "malta build.json"
   },
   "devDependencies": {
-    "malta": "^4.1.28",
+    "malta": "^4.1.31",
     "malta-header-comment": "^1.0.12",
     "malta-js-uglify": "^1.0.13",
     "malta-rename": "^1.0.6"
