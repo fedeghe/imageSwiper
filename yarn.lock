@@ -77,10 +77,10 @@ malta-rename@^1.0.6:
   resolved "https://registry.npmjs.org/malta-rename/-/malta-rename-1.0.6.tgz"
   integrity sha512-TUgvbMK2ZYZK3E2kkXNfJZiHT/o9ebWKOBdlUWvbKpdBmw2AGFKm+Kw19R3BOSbrrnh7uazkktyIF+1BzBIgHQ==
 
-malta@^4.1.28:
-  version "4.1.28"
-  resolved "https://registry.npmjs.org/malta/-/malta-4.1.28.tgz"
-  integrity sha512-WS2KL+KTPZxjipARQ6tgMJKuO4LPFNzZjJd9s5Ga9GJ6EEvVVZIZcyZf5WNIe8ammSMcxwSPwut2ywpki66bvQ==
+malta@^4.1.31:
+  version "4.1.41"
+  resolved "https://registry.yarnpkg.com/malta/-/malta-4.1.41.tgz#de88e424e0b623d7b8004afe19fff526b0eb6abe"
+  integrity sha512-SwTi8k2k9XsNxar+5FTFGlQtzW+hZ8svqh31SbS5Kwqo13JZ+ipHHR4NG+sywsAJi1b6uE48uJYFh/eFos3q6Q==
 
 repeat-string@^1.5.2:
   version "1.6.1"
